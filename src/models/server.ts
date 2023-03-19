@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from 'express'
 import routeCategoria from '../routes/categoria'
+import routeProducto from '../routes/producto'
 import db from '../db/dbconexion' //Conexion
 
 class Server{
@@ -29,7 +30,7 @@ class Server{
             })
         })
         this.app.use('/api/categorias', routeCategoria);
-        
+        this.app.use('/api/productos', routeProducto);
     }
 
       //Funciones que se ejecutan despues de algo

@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const categoria_1 = __importDefault(require("../routes/categoria"));
+const producto_1 = __importDefault(require("../routes/producto"));
 const dbconexion_1 = __importDefault(require("../db/dbconexion")); //Conexion
 class Server {
     constructor() {
@@ -37,6 +38,7 @@ class Server {
             });
         });
         this.app.use('/api/categorias', categoria_1.default);
+        this.app.use('/api/productos', producto_1.default);
     }
     //Funciones que se ejecutan despues de algo
     midleweres() {

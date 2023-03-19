@@ -2,7 +2,7 @@ import {DataTypes} from 'sequelize'
 import db from '../db/dbconexion'
 
 //modelo
-const Categoria = db.define('Categoria', {
+const Categoria = db.define('Categorias', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const dbconexion_1 = __importDefault(require("../db/dbconexion"));
 //modelo
-const Categoria = dbconexion_1.default.define('Categoria', {
+const Categoria = dbconexion_1.default.define('Categorias', {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
