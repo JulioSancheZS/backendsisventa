@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const dbconexion_1 = __importDefault(require("../db/dbconexion"));
+const rol_1 = __importDefault(require("./rol"));
 const Usuario = dbconexion_1.default.define('usuario', {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -24,7 +25,7 @@ const Usuario = dbconexion_1.default.define('usuario', {
     password: {
         type: sequelize_1.DataTypes.STRING
     },
-    corre: {
+    correo: {
         type: sequelize_1.DataTypes.STRING
     },
     telefono: {
@@ -42,4 +43,6 @@ const Usuario = dbconexion_1.default.define('usuario', {
     // I want updatedAt to actually be called updateTimestamp
     updatedAt: false
 });
+// Agregar la asociación a la definición del modelo
+Usuario.belongsTo(rol_1.default, { foreignKey: 'idrol' });
 exports.default = Usuario;

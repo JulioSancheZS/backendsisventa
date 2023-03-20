@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize'
 import db from '../db/dbconexion'
+import Rol from './rol'
 
 const Usuario = db.define('usuario', {
     id: {
@@ -20,7 +21,7 @@ const Usuario = db.define('usuario', {
     password: {
         type: DataTypes.STRING
     }, 
-    corre: {
+    correo: {
         type: DataTypes.STRING
     }, 
     telefono: {
@@ -39,5 +40,9 @@ const Usuario = db.define('usuario', {
     // I want updatedAt to actually be called updateTimestamp
     updatedAt: false
 })
+
+// Agregar la asociación a la definición del modelo
+Usuario.belongsTo(Rol, { foreignKey: 'idrol' })
+
 
 export default Usuario

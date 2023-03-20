@@ -13,9 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
 const categoria_1 = __importDefault(require("../routes/categoria"));
 const producto_1 = __importDefault(require("../routes/producto"));
 const venta_1 = __importDefault(require("../routes/venta"));
+const usuario_1 = __importDefault(require("../routes/usuario"));
 const dbconexion_1 = __importDefault(require("../db/dbconexion")); //Conexion
 class Server {
     constructor() {
@@ -38,16 +40,18 @@ class Server {
                 msg: 'API working'
             });
         });
+        //Rutas
         this.app.use('/api/categorias', categoria_1.default);
         this.app.use('/api/productos', producto_1.default);
         this.app.use('/api/ventas', venta_1.default);
+        this.app.use('/api/users', usuario_1.default);
     }
     //Funciones que se ejecutan despues de algo
     midleweres() {
         //parseaomos el body
         this.app.use(express_1.default.json());
         //Cors
-        //this.app.use(cors());
+        this.app.use((0, cors_1.default)());
     }
     //Conexion a db
     dbConnect() {
