@@ -64,7 +64,7 @@ const newUser = (res, response) => __awaiter(void 0, void 0, void 0, function* (
 exports.newUser = newUser;
 const loginUser = (res, response) => __awaiter(void 0, void 0, void 0, function* () {
     //console.log(res.body);
-    const { login, password, idrol } = res.body;
+    const { login, password } = res.body;
     const user = yield usuario_1.default.findOne({
         where: { login: login },
         include: { model: rol_1.default, attributes: ['nombrerol'] }, // incluir la tabla de roles en la consulta y solo obtener el campo 'nombre'
@@ -85,8 +85,9 @@ const loginUser = (res, response) => __awaiter(void 0, void 0, void 0, function*
     //Generamos token
     const token = jsonwebtoken_1.default.sign({
         login: login,
-        nombreRol: user.rol.nombrerol, // acceder al nombre del rol desde el objeto de usuario incluido
-    }, process.env.SECRET_kEY || 'julio134');
+        idusuario: user.id,
+        nombreRol: user.rol.nombrerol // acceder al nombre del rol desde el objeto de usuario incluido
+    }, process.env.SECRET_KEY || 'julio134');
     response.json(token);
 });
 exports.loginUser = loginUser;

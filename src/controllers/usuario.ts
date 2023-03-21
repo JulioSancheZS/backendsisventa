@@ -66,7 +66,7 @@ export const newUser = async (res: Request, response: Response) => {
 export const loginUser = async (res: Request, response: Response) => {
 
     //console.log(res.body);
-    const { login, password, idrol } = res.body;
+    const { login, password } = res.body;
     const user: any = await Usuario.findOne({
         where: { login: login },
         include: { model: Rol, attributes: ['nombrerol'] }, // incluir la tabla de roles en la consulta y solo obtener el campo 'nombre'
@@ -88,8 +88,9 @@ export const loginUser = async (res: Request, response: Response) => {
     //Generamos token
     const token = jwt.sign({
         login: login,
-        nombreRol: user.rol.nombrerol, // acceder al nombre del rol desde el objeto de usuario incluido
-    }, process.env.SECRET_kEY || 'julio134');
+        idusuario: user.id,
+        nombreRol: user.rol.nombrerol// acceder al nombre del rol desde el objeto de usuario incluido
+    }, process.env.SECRET_KEY || 'julio134');
 
     response.json(token);
 }
