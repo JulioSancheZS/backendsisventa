@@ -7,7 +7,7 @@ const Producto = db.define('Producto', {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        field: 'idProducto' // Aquí especificas que la columna en la BD se llama "idcategoria"
+        field: 'idProducto' // Aquí especificas que la columna en la BD se llama "idProducto"
     },
     idCategoria: {
         type: DataTypes.INTEGER

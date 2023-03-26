@@ -8,7 +8,7 @@ interface VentaAttributes {
   id: number;
   idcliente: number;
   idusuario: number;
-  idestado: number;
+  idestadoventa: number;
   nofactura: string;
   fechaventa: Date;
 }
@@ -19,7 +19,7 @@ class Venta extends Model<VentaAttributes, VentaCreationAttributes> implements V
   public id!: number;
   public idcliente!: number;
   public idusuario!: number;
-  public idestado!: number;
+  public idestadoventa!: number;
   public nofactura!: string;
   public fechaventa!: Date;
 
@@ -41,7 +41,7 @@ class Venta extends Model<VentaAttributes, VentaCreationAttributes> implements V
         idusuario: {
           type: DataTypes.INTEGER,
         },
-        idestado: {
+        idestadoventa: {
           type: DataTypes.INTEGER,
         },
         nofactura: {

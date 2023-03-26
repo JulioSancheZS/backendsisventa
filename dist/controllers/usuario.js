@@ -19,7 +19,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const rol_1 = __importDefault(require("../models/rol"));
 const newUser = (res, response) => __awaiter(void 0, void 0, void 0, function* () {
     //destructurar
-    const { idrol, nombre, login, password, correo, telefono, fecharegistro, activo, } = res.body;
+    const { idrol, nombre, login, password, correo, telefono, activo, } = res.body;
     //Validar si el usuario ya existe
     const user = yield usuario_1.default.findOne({ where: { login: login } });
     const correos = yield usuario_1.default.findOne({ where: { correo: correo } });
@@ -47,7 +47,7 @@ const newUser = (res, response) => __awaiter(void 0, void 0, void 0, function* (
             password: hashPassword,
             correo: correo,
             telefono: telefono,
-            fecharegistro: currentDate,
+            fechaRegistro: currentDate,
             activo: activo
         });
         response.json({

@@ -39,10 +39,32 @@ export const getProductos = async (req: Request, res: Response) => {
 export const postProducto = async(res: Request, response: Response) => {
 
     //destructurar 
-   const { body } = res;
+   //destructurar
+   const { idCategoria,
+    nombre,
+    descripcion,
+    precio,
+    existencia,
+    stockMinimo,
+    stockMaximo,
+    activo
+} = res.body;
+
    //Agregar se hace con el create y le pasamos el body
    try {
-     await Producto.create(body);
+    const currentDate = new Date(); //Fecha actual del servidor
+
+     await Producto.create({
+      idCategoria: idCategoria,
+      nombre: nombre,
+      descripcion: descripcion,
+      precio:precio,
+      existencia: existencia,
+      fechaRegistro: currentDate,
+      stockMaximo: stockMaximo,
+      stockMinimo: stockMinimo,
+      activo: activo
+     });
      //Enviamos mensaje
      response.json({
        msg: 'El Producto fue agregada con exito',

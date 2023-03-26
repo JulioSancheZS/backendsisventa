@@ -49,10 +49,22 @@ exports.getProductoPorId = getProductoPorId;
 //Agregar de producto
 const postProducto = (res, response) => __awaiter(void 0, void 0, void 0, function* () {
     //destructurar 
-    const { body } = res;
+    //destructurar
+    const { idCategoria, nombre, descripcion, precio, existencia, stockMinimo, stockMaximo, activo } = res.body;
     //Agregar se hace con el create y le pasamos el body
     try {
-        yield producto_1.default.create(body);
+        const currentDate = new Date(); //Fecha actual del servidor
+        yield producto_1.default.create({
+            idCategoria: idCategoria,
+            nombre: nombre,
+            descripcion: descripcion,
+            precio: precio,
+            existencia: existencia,
+            fechaRegistro: currentDate,
+            stockMaximo: stockMaximo,
+            stockMinimo: stockMinimo,
+            activo: activo
+        });
         //Enviamos mensaje
         response.json({
             msg: 'El Producto fue agregada con exito',

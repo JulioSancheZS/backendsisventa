@@ -11,7 +11,7 @@ const Producto = dbconexion_1.default.define('Producto', {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        field: 'idProducto' // Aquí especificas que la columna en la BD se llama "idcategoria"
+        field: 'idProducto' // Aquí especificas que la columna en la BD se llama "idProducto"
     },
     idCategoria: {
         type: sequelize_1.DataTypes.INTEGER

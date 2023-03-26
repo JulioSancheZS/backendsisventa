@@ -18,6 +18,8 @@ const categoria_1 = __importDefault(require("../routes/categoria"));
 const producto_1 = __importDefault(require("../routes/producto"));
 const venta_1 = __importDefault(require("../routes/venta"));
 const usuario_1 = __importDefault(require("../routes/usuario"));
+const cliente_1 = __importDefault(require("../routes/cliente"));
+const dashboard_1 = __importDefault(require("../routes/dashboard"));
 const dbconexion_1 = __importDefault(require("../db/dbconexion")); //Conexion
 class Server {
     constructor() {
@@ -45,6 +47,8 @@ class Server {
         this.app.use('/api/productos', producto_1.default);
         this.app.use('/api/ventas', venta_1.default);
         this.app.use('/api/users', usuario_1.default);
+        this.app.use('/api/clientes', cliente_1.default);
+        this.app.use('/api/dashboard', dashboard_1.default);
     }
     //Funciones que se ejecutan despues de algo
     midleweres() {

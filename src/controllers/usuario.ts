@@ -12,7 +12,6 @@ export const newUser = async (res: Request, response: Response) => {
         password,
         correo,
         telefono,
-        fecharegistro,
         activo,
     } = res.body;
 
@@ -48,7 +47,7 @@ export const newUser = async (res: Request, response: Response) => {
             password: hashPassword,
             correo: correo,
             telefono: telefono,
-            fecharegistro: currentDate,
+            fechaRegistro: currentDate,
             activo: activo
         })
 
@@ -80,6 +79,7 @@ export const loginUser = async (res: Request, response: Response) => {
     }
     //Validamos pass
     const passwordValid = await bcrypt.compare(password, user.password);
+    
     if (!passwordValid) {
         return response.status(400).json({
             msg: `Contraseña Incorrecta`

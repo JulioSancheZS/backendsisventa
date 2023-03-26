@@ -58,7 +58,7 @@ CREATE TABLE `clientes` (
   `direccion` varchar(400) DEFAULT NULL,
   `telefono` varchar(8) DEFAULT NULL,
   PRIMARY KEY (`idcliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'julio','sanchez','cesar','serrano','algo ','86869654');
+INSERT INTO `clientes` VALUES (1,'julio','sanchez','cesar','serrano','algo ','86869654'),(2,'Ner','Aguillar','Helmut','Martinez','direccion del puente 2 cuadras al sur','56458965');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +147,7 @@ CREATE TABLE `productos` (
   PRIMARY KEY (`idProducto`),
   KEY `fk_idcategoria_idx` (`idCategoria`),
   CONSTRAINT `fk_idcategoria` FOREIGN KEY (`idCategoria`) REFERENCES `categorias` (`idcategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +156,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,1,'RelojesEditadops','Relojes Inteligentes marca tal',364.20,585,10,20,'2023-03-18 20:08:59',_binary ''),(2,1,'ewq','ew',323.25,43,43,23,'2023-03-18 20:08:59',_binary '\0'),(3,1,'Relojes','Relojes Inteligentes marca tal',364.20,120,10,20,'2023-03-18 20:08:59',_binary '');
+INSERT INTO `productos` VALUES (1,1,'RelojesEditadops','Relojes Inteligentes marca tal',364.20,585,10,20,'2023-03-18 20:08:59',_binary ''),(2,1,'ewq','ew',323.25,43,43,23,'2023-03-18 20:08:59',_binary '\0'),(3,1,'Relojes','Relojes Inteligentes marca tal',364.20,120,10,20,'2023-03-18 20:08:59',_binary ''),(4,NULL,'Producto Prueba','Algo de no se que',323.25,43,43,23,NULL,_binary ''),(5,1,'Producto Pruebaaa','Algo de no se que',323.25,43,43,23,NULL,_binary ''),(6,1,'Producto Pruebaaa','Algo de no se que',323.25,43,43,23,'2023-03-25 18:19:01',_binary '');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +173,7 @@ CREATE TABLE `rols` (
   `fecharegistro` timestamp NULL DEFAULT NULL,
   `activo` bit(1) DEFAULT NULL,
   PRIMARY KEY (`idrol`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,7 +182,7 @@ CREATE TABLE `rols` (
 
 LOCK TABLES `rols` WRITE;
 /*!40000 ALTER TABLE `rols` DISABLE KEYS */;
-INSERT INTO `rols` VALUES (1,'Administrador','2023-03-19 04:23:34',_binary '');
+INSERT INTO `rols` VALUES (1,'Administrador','2023-03-19 04:23:34',_binary ''),(2,'Vendedor','2023-03-25 00:12:24',_binary '');
 /*!40000 ALTER TABLE `rols` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,9 +204,10 @@ CREATE TABLE `usuarios` (
   `fecharegistro` timestamp NULL DEFAULT NULL,
   `activo` bit(1) DEFAULT NULL,
   PRIMARY KEY (`idusuario`),
+  UNIQUE KEY `login_UNIQUE` (`login`),
   KEY `fk_idrol_idx` (`idrol`),
   CONSTRAINT `fk_idrol` FOREIGN KEY (`idrol`) REFERENCES `rols` (`idrol`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +216,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,1,'julio','julio','1234','julio@gmail.com','7898789','2023-03-19 04:25:17',_binary '');
+INSERT INTO `usuarios` VALUES (1,1,'julio','julio','1234','julio@gmail.com','7898789','2023-03-19 04:25:17',_binary ''),(2,1,'Julio Cesar','adming','$2b$10$N2GooHaTfBCg50IUe6NGs.vWN64Z1xUdw/M7tbPsMDL7iLIsSzjoy',NULL,'86616696','2023-03-19 04:25:17',_binary ''),(3,1,'Julio Cesar','admingadsa','$2b$10$15mdumPp.dO4QMYPtqgjUOWkLUko55j/pUpIhpDG1X4sOCIgco0TC',NULL,'86616696','2023-03-20 03:24:56',_binary ''),(6,1,'Julio Cesar','admingadsaa','$2b$10$IJ9No9B3w5LkfR1V.aHD/uKWrtl9Fg08q6DSjzElocln6Mp46uBLq','juliow@gmail.com','86616696','2023-03-20 03:35:54',_binary ''),(7,1,'Julio Sanchez','adminjulio','$2b$10$xJN6VS9ZTVL5S3wIcf.nquY0oP3aP0YMbt91hqMPoM/XWDQEj8vti','Julio.sanchez@gmail.com','86616696','2023-03-25 00:15:03',_binary '');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -232,13 +233,13 @@ CREATE TABLE `ventas` (
   `fechaventa` datetime DEFAULT NULL,
   `idusuario` int NOT NULL,
   `idcliente` int NOT NULL,
-  `idestado` int NOT NULL,
+  `idestadoventa` int NOT NULL,
   PRIMARY KEY (`idventa`),
   KEY `fk_idusuario_idx` (`idusuario`),
   KEY `fk_idcliente_idx` (`idcliente`),
-  KEY `fk_idestadoventa_idx` (`idestado`),
+  KEY `fk_idestadoventa_idx` (`idestadoventa`),
   CONSTRAINT `fk_idcliente` FOREIGN KEY (`idcliente`) REFERENCES `clientes` (`idcliente`),
-  CONSTRAINT `fk_idestadoventa` FOREIGN KEY (`idestado`) REFERENCES `estadoventas` (`idestadoventa`),
+  CONSTRAINT `fk_idestadoventa` FOREIGN KEY (`idestadoventa`) REFERENCES `estadoventas` (`idestadoventa`),
   CONSTRAINT `fk_idusuario` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idusuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -262,4 +263,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-18 23:37:04
+-- Dump completed on 2023-03-25 22:51:14

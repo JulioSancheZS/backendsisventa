@@ -1,37 +1,55 @@
-import { DataTypes } from 'sequelize'
-import db from '../db/dbconexion'
+import { DataTypes, Model } from 'sequelize';
+import db from '../db/dbconexion';
 
-const Cliente = db.define('Cliente', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        field: 'idcliente' // Aquí especificas que la columna en la BD se llama "idcategoria"
+interface ClienteAttributes {
+  id: number;
+  primernombre: string;
+  segundonombre: string;
+  primerapellido: string;
+  segundoapellido: string;
+  direccion: string;
+  telefono: string;
+  NombreCompleto: string;
+}
+
+interface ClienteInstance extends Model<ClienteAttributes>, ClienteAttributes {}
+
+const Cliente = db.define<ClienteInstance>('Cliente', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    field: 'idcliente',
+  },
+  primernombre: {
+    type: DataTypes.STRING,
+  },
+  primerapellido: {
+    type: DataTypes.STRING,
+  },
+  segundonombre: {
+    type: DataTypes.STRING,
+  },
+  segundoapellido: {
+    type: DataTypes.STRING,
+  },
+  direccion: {
+    type: DataTypes.STRING,
+  },
+  telefono: {
+    type: DataTypes.STRING,
+  },
+  NombreCompleto: {
+    type: DataTypes.VIRTUAL,
+    get() {
+      const nombres = [this.getDataValue('primernombre'), this.getDataValue('segundonombre')].filter(Boolean).join(' ');
+      const apellidos = [this.getDataValue('primerapellido'), this.getDataValue('segundoapellido')].filter(Boolean).join(' ');
+      return `${nombres} ${apellidos}`;
     },
-    primernombre: {
-        type: DataTypes.STRING
-    },
-    primerapellido: {
-        type: DataTypes.STRING
-    },
-    segundonombre: {
-        type: DataTypes.STRING
-    },
-    segundoapellido: {
-        type: DataTypes.STRING
-    }, 
-    direccion: {
-        type: DataTypes.STRING
-    }, 
-    telefono: {
-        type: DataTypes.STRING
-    }, 
+  },
 }, {
-    // I don't want createdAt
-    createdAt: false,
+  createdAt: false,
+  updatedAt: false,
+});
 
-    // I want updatedAt to actually be called updateTimestamp
-    updatedAt: false
-})
-
-export default Cliente
+export default Cliente;

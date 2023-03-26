@@ -10,30 +10,36 @@ const Cliente = dbconexion_1.default.define('Cliente', {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        field: 'idcliente' // Aquí especificas que la columna en la BD se llama "idcategoria"
+        field: 'idcliente',
     },
     primernombre: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     primerapellido: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     segundonombre: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     segundoapellido: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     direccion: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     telefono: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
+    },
+    NombreCompleto: {
+        type: sequelize_1.DataTypes.VIRTUAL,
+        get() {
+            const nombres = [this.getDataValue('primernombre'), this.getDataValue('segundonombre')].filter(Boolean).join(' ');
+            const apellidos = [this.getDataValue('primerapellido'), this.getDataValue('segundoapellido')].filter(Boolean).join(' ');
+            return `${nombres} ${apellidos}`;
+        },
     },
 }, {
-    // I don't want createdAt
     createdAt: false,
-    // I want updatedAt to actually be called updateTimestamp
-    updatedAt: false
+    updatedAt: false,
 });
 exports.default = Cliente;

@@ -23,7 +23,7 @@ class Venta extends sequelize_1.Model {
             idusuario: {
                 type: sequelize_1.DataTypes.INTEGER,
             },
-            idestado: {
+            idestadoventa: {
                 type: sequelize_1.DataTypes.INTEGER,
             },
             nofactura: {

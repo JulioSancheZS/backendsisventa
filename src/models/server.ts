@@ -4,6 +4,8 @@ import routeCategoria from '../routes/categoria'
 import routeProducto from '../routes/producto'
 import routeVenta from '../routes/venta'
 import routeUser from '../routes/usuario'
+import routeCliente from '../routes/cliente'
+import routeDashboard from '../routes/dashboard'
 
 import db from '../db/dbconexion' //Conexion
 
@@ -38,8 +40,12 @@ class Server{
         this.app.use('/api/categorias', routeCategoria);
         this.app.use('/api/productos', routeProducto);
         this.app.use('/api/ventas', routeVenta);
-
+              
         this.app.use('/api/users', routeUser);
+        this.app.use('/api/clientes', routeCliente);
+
+        this.app.use('/api/dashboard', routeDashboard)
+
     }
 
       //Funciones que se ejecutan despues de algo
