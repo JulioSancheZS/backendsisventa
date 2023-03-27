@@ -22,7 +22,7 @@ export const postVenta = async (req: Request, res: Response) => {
       const venta = await Venta.create({
         idcliente: body.idcliente,
         idusuario: body.idusuario,
-        idestado: body.idestado,
+        idestadoventa: body.idestadoventa,
         nofactura: body.nofactura,
         fechaventa: new Date(),
       }, { transaction: t });

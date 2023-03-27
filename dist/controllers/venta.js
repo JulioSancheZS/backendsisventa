@@ -24,7 +24,7 @@ const postVenta = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const venta = yield venta_1.default.create({
             idcliente: body.idcliente,
             idusuario: body.idusuario,
-            idestado: body.idestado,
+            idestadoventa: body.idestadoventa,
             nofactura: body.nofactura,
             fechaventa: new Date(),
         }, { transaction: t });
